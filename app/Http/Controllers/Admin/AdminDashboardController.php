@@ -3,9 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Campus;
+use App\Models\Computer;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Str;
 
 class AdminDashboardController extends Controller
 {
@@ -20,11 +24,16 @@ class AdminDashboardController extends Controller
      */
     public function index(Request $request)
     {
+            $global_pc_count = DB::table('computers')->select('SELECT COUNT(id) FROM computers')->count();
+            //dd($global_pc_count);
+
                 if ($request->ajax()) {
-                    $users = User::all();
-            
-            return DataTables::of($users)
-                            ->addColumn('action', function ($users) {
+                    $computers = Computer::select('*')
+                        ->leftJoin('campus', 'campus.id', '=', 'computers.campus_id')
+                        ->get();
+
+                return DataTables::of($computers)
+                            ->addColumn('action', function ($computers) {
                            $btn = '<button type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Edit" aria-describedby="">
                                         <i class="fa fa-pencil"></i>
                                     </button>';
@@ -32,10 +41,12 @@ class AdminDashboardController extends Controller
                                             <i class="fa fa-times"></i>
                                         </button>';        
                             return $btn;            
-                        })->make(true);
+                        })
+                        ->rawColumns(['action' => 'action'])
+                        ->make(true);
         }
             
-        return view('admin.index');
+        return view('admin.index', ['global_pc_count' => $global_pc_count]);
     }
 
     /**

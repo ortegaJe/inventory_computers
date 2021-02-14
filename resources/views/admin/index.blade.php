@@ -6,6 +6,7 @@
 @section('content')
 <!-- Page Content -->
 <div class="content">
+    @include('components.gutters-tiny')
     <div class="col-md-12">
         <div class="block block-rounded block-bordered">
             <div class="block-header block-header-default border-b">
@@ -28,21 +29,29 @@
                         <thead>
                             <tr>
                                 <th></th>
-                                <th>First name</th>
-                                <th>Last name</th>
-                                <th>Position</th>
-                                <th>Office</th>
+                                <th>codigo</th>
+                                <th>serial</th>
+                                <th>ip</th>
+                                <th>mac</th>
+                                <th>anydesk</th>
+                                <th>fecha de creación</th>
+                                <th>sede</th>
+                                <th>estado</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
                                 <th></th>
-                                <th>First name</th>
-                                <th>Last name</th>
-                                <th>Position</th>
-                                <th>Office</th>
-                                <th>Action</th>
+                                <th>CODIGO</th>
+                                <th>SERIAL</th>
+                                <th>IP</th>
+                                <th>MAC</th>
+                                <th>ANYDESK</th>
+                                <th>FECHA DE CREACIÓN</th>
+                                <th>SEDE</th>
+                                <th>ESTADO</th>
+                                <th>ACTION</th>
                             </tr>
                         </tfoot>
                     </table>

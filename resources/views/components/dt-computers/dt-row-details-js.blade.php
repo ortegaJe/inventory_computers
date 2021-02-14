@@ -7,18 +7,28 @@
 <script>
   function format ( d ) {
 return '<div class="slider">'+
-  '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
+  '<table>'+
     '<tr>'+
       '<td>Full name:</td>'+
-      '<td>'+d.name+'</td>'+
+      '<td>'+'<span class="badge badge-pill badge-success">'+d.brand+'</span>'+'</td>'+
+      '<td>Extra info:</td>'+
+      '<td>'+d.location+'</td>'+
       '</tr>'+
     '<tr>'+
       '<td>Extension number:</td>'+
-      '<td>'+d.email+'</td>'+
+      '<td>'+'<img class="img-fluid" width="160px" src="{{ asset('media/photos/M710q.png') }}">'+'</img>'+'</td>'+
+      '<td>Extra info:</td>'+
+      '<td>'+d.observation+'</td>'+
       '</tr>'+
     '<tr>'+
       '<td>Extra info:</td>'+
-      '<td>And any further details here (images etc)...</td>'+
+      '<td>'+d.cpu+'</td>'+
+      '<td>Image:</td>'+
+      '<td>'+d.model+'</td>'+
+      '</tr>'+
+      '<tr>'+
+      '<td>Extra info:</td>'+
+      '<td>'+d.os+'</td>'+
       '</tr>'+
     '</table>'+
   '</div>';
@@ -43,10 +53,14 @@ var dt = $('#example').DataTable( {
 "data": null,
 "defaultContent": ""
 },
-{ "data": "name" },
-{ "data": "email" },
+{ "data": "inv_code" },
+{ "data": "serial" },
+{ "data": "ip" },
+{ "data": "mac" },
+{ "data": "anydesk" },
 { "data": "created_at" },
-{ "data": "updated_at" },
+{ "data": "name" },
+{ "data": "status_id" },
 { "data": "action" }
 ],
 "order": [[1, 'asc']]
